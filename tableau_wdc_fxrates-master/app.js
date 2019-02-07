@@ -26,7 +26,7 @@
         }];
 
         var tableSchema = {
-            id: 'APILayer',
+            id: 'ExchangeRates',
             alias: 'FX Rates API',
             columns: cols
         };
@@ -36,21 +36,19 @@
     myConnector.getData = function (table, doneCallback) {
 
         // get the base currency selected
-        //var urlParam = tableau.connectionData.baseCurr;
         var accessKey = tableau.connectionData.key;
-        var baseUrl = 'http://www.apilayer.net/api/live?access_key=' + accessKey;
-       // var baseUrl = 'https://api.fixer.io/latest?base=' + urlParam;
+        var baseUrl = 'https://api.exchangeratesapi.io/latest?base=USD';
 
         tableau.log(baseUrl);
 
         $.getJSON(baseUrl, function (resp) {
-            var quoteData = resp.quotes;
+            var rateData = resp.rates;
             var tableData = []
-            for (var key in quoteData) {
-                if (quoteData.hasOwnProperty(key)) {
+            for (var key in rateData) {
+                if (rateData.hasOwnProperty(key)) {
                     tableData.push({
                         'Currency': key,
-                        'Value': quoteData[key],
+                        'Value': rateData[key],
                         'BaseCurrency': 'USD',
                     });
                 }
@@ -63,26 +61,10 @@
     tableau.registerConnector(myConnector);
 })();
 
-$(document).ready(function () {
-    $("#clickButton").click(function () {
-
-        var urlParam = {
-            //baseCurr: $('#currencySelect').val().trim(),
-            key: $('#accessKey').val().trim()
-        };
-
-       
-
-        if (urlParam.key !== '') {
-
-            tableau.connectionName = "APILayer-data";
-            tableau.connectionData = urlParam;
+// Create event listeners for when the user submits the form
+    $(document).ready(function() {
+        $("#submitButton").click(function() {
+            tableau.connectionName = "Get Exchange Rates!"; // This will be the data source name in Tableau
             tableau.submit(); // This sends the connector object to Tableau
-            //test if works on console
-            tableau.log('This button is working neatly');
-        } else {
-            tableau.log('Please enter your API key!');
-            $(".errorMessage").text('Please enter your API key');
-        }
+        });
     });
-});
