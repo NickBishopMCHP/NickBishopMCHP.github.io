@@ -9,7 +9,7 @@
     myConnector.getSchema = function (schemaCallback) {
         // define columns in an array of objects
         var cols = [{
-            id: "Currency",
+            id: "quotes",
             alias: "Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Currencies Exchanged"
@@ -19,7 +19,7 @@
             dataType: tableau.dataTypeEnum.float,
             description: "Exchange Rate Value"
         }, {
-            id: "BaseCurrency",
+            id: "source",
             alias: "Base Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Selected Base Currency"
