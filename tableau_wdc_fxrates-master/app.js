@@ -10,7 +10,7 @@
         // define columns in an array of objects
         var cols = [{
             id: "quotes",
-            alias: "Currency",
+            alias: "quotes",
             dataType: tableau.dataTypeEnum.string,
             description: "Currencies Exchanged"
         }, {
@@ -20,7 +20,7 @@
             description: "Exchange Rate Value"
         }, {
             id: "source",
-            alias: "Base Currency",
+            alias: "source",
             dataType: tableau.dataTypeEnum.string,
             description: "Selected Base Currency"
         }];
