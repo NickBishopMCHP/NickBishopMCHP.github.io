@@ -47,9 +47,9 @@
             for (var key in rateData) {
                 if (rateData.hasOwnProperty(key)) {
                     tableData.push({
-                        'Currency': key,
+                        'quotes': key,
                         'Value': rateData[key],
-                        'BaseCurrency': 'USD',
+                        'source': 'USD',
                     });
                 }
             }
