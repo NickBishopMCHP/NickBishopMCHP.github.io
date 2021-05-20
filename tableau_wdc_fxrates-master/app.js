@@ -37,7 +37,7 @@
 
         // get the base currency selected
         var accessKey = tableau.connectionData.key;
-        var baseUrl = 'https://api.exchangeratesapi.io/latest?base=USD';
+        var baseUrl = 'http://apilayer.net/api/live?access_key=b121c35206f5e8b7bd23a200331b56fa&currencies=EUR,GBP,JPY,CNY&source=USD&format=1';
 
         tableau.log(baseUrl);
 
