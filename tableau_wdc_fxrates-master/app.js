@@ -36,8 +36,8 @@
     myConnector.getData = function (table, doneCallback) {
 
         // get the base currency selected
-        var accessKey = tableau.connectionData.key;
-        var baseUrl = 'http://apilayer.net/api/live?access_key=b121c35206f5e8b7bd23a200331b56fa&currencies=CNY,EUR,GBP&source=USD&format=1';
+        var accessKey = b121c35206f5e8b7bd23a200331b56fa
+        var baseUrl = 'http://apilayer.net/api/live?
 
         tableau.log(baseUrl);
 
