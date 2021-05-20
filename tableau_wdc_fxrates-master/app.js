@@ -14,6 +14,11 @@
             dataType: tableau.dataTypeEnum.string,
             description: "Currencies Exchanged"
         }, {
+            id: "value",
+            alias: "Value",
+            dataType: tableau.dataTypeEnum.float,
+            description: "Exchange Rate"
+        }, {
             id: "source",
             alias: "Base Currency",
             dataType: tableau.dataTypeEnum.string,
@@ -43,6 +48,7 @@
                 if (rateData.hasOwnProperty(key)) {
                     tableData.push({
                         'quotes': key,
+                        'value': key: value,
                         'source': 'USD',
                     });
                 }
