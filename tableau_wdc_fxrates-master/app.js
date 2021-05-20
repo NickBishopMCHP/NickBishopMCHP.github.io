@@ -9,17 +9,12 @@
     myConnector.getSchema = function (schemaCallback) {
         // define columns in an array of objects
         var cols = [{
-            id: "Currency",
+            id: "quotes",
             alias: "Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Currencies Exchanged"
         }, {
-            id: "Value",
-            alias: "Value",
-            dataType: tableau.dataTypeEnum.float,
-            description: "Exchange Rate Value"
-        }, {
-            id: "BaseCurrency",
+            id: "source",
             alias: "Base Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Selected Base Currency"
@@ -36,8 +31,8 @@
     myConnector.getData = function (table, doneCallback) {
 
         // get the base currency selected
-        var accessKey = b121c35206f5e8b7bd23a200331b56fa;
-        var baseUrl = 'http://apilayer.net/api/live?access_key=accessKey&currencies=EUR,GBP,JPY,CNY&source=USD&format=1';
+        var accessKey = tableau.connectionData.key;
+        var baseUrl = 'https://api.exchangeratesapi.io/latest?base=USD';
 
         tableau.log(baseUrl);
 
@@ -47,9 +42,8 @@
             for (var key in rateData) {
                 if (rateData.hasOwnProperty(key)) {
                     tableData.push({
-                        'Currency': key,
-                        'Value': rateData[key],
-                        'BaseCurrency': 'USD',
+                        'quotes': key,
+                        'source': 'USD',
                     });
                 }
             }
