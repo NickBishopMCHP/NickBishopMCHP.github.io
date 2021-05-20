@@ -9,8 +9,8 @@
     myConnector.getSchema = function (schemaCallback) {
         // define columns in an array of objects
         var cols = [{
-            id: "quotes",
-            alias: "quotes",
+            id: "Currency",
+            alias: "Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Currencies Exchanged"
         }, {
@@ -19,8 +19,8 @@
             dataType: tableau.dataTypeEnum.float,
             description: "Exchange Rate Value"
         }, {
-            id: "source",
-            alias: "source",
+            id: "BaseCurrency",
+            alias: "Base Currency",
             dataType: tableau.dataTypeEnum.string,
             description: "Selected Base Currency"
         }];
@@ -36,8 +36,8 @@
     myConnector.getData = function (table, doneCallback) {
 
         // get the base currency selected
-        var accessKey = b121c35206f5e8b7bd23a200331b56fa
-        var baseUrl = 'http://apilayer.net/api/live?
+        var accessKey = b121c35206f5e8b7bd23a200331b56fa;
+        var baseUrl = 'http://apilayer.net/api/live?access_key=accessKey&currencies=EUR,GBP,JPY,CNY&source=USD&format=1';
 
         tableau.log(baseUrl);
 
@@ -47,9 +47,9 @@
             for (var key in rateData) {
                 if (rateData.hasOwnProperty(key)) {
                     tableData.push({
-                        'quotes': key,
+                        'Currency': key,
                         'Value': rateData[key],
-                        'source': 'USD',
+                        'BaseCurrency': 'USD',
                     });
                 }
             }
